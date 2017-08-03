@@ -32,19 +32,38 @@ function deliveriesService(
 
   return service;
 
+  /**
+   * @name                        getGrillaConfig
+   * @description                 Get grilla config.
+   */
   function getGrillaConfig() {
     return grillaConfig;
   }
 
-  function updateGrillaConfig(grillaConfigUpdated) {
-    _.merge(grillaConfig, grillaConfigUpdated);
+  /**
+   * @name                                updateGrillaConfig
+   * @description                         Update grilla config.
+   * @param {Object} updatedGrillaConfig  The updated grilla config.
+   */
+  function updateGrillaConfig(updatedGrillaConfig) {
+    _.merge(grillaConfig, updatedGrillaConfig);
   }
 
+  /**
+   * @name                        postDelivery
+   * @description                 Create new delivery.
+   * @param {Object} delivery     The new delivery.
+   */
   function postDelivery(delivery) {
     delivery.id = getMockId();
     deliveries.push(delivery);
   }
 
+  /**
+   * @name                      updateDelivery
+   * @description               Update existing delivery.
+   * @param {Object} delivery   The updated delivery.
+   */
   function updateDelivery(delivery) {
     var index = _.findIndex(deliveries, function (deliv) {
       return deliv.id === delivery.id;
@@ -52,14 +71,27 @@ function deliveriesService(
     _.merge(deliveries[index], delivery);
   }
 
+  /**
+   * @name            getDeliveries
+   * @description     Get list of deliveries.
+   */
   function getDeliveries() {
     return deliveries;
   }
 
+  /**
+   * @name                 getDelivery
+   * @description          Get delivery by id.
+   * @param {Object} id    The delivery id.
+   */
   function getDelivery(id) {
     return _.find(deliveries, {id: id});
   }
 
+  /**
+   * @name          addMockDeliveries
+   * @description   Add mock deliveries.
+   */
   function addMockDeliveries() {
     deliveries = [
       {
@@ -165,6 +197,10 @@ function deliveriesService(
     ];
   }
 
+  /**
+   * @name           addMockGrillaConfig
+   * @description    Add mock grilla config.
+   */
   function addMockGrillaConfig() {
     grillaConfig = {
       cantItemsPerPage: 2,
@@ -203,6 +239,11 @@ function deliveriesService(
       ]
     };
   }
+
+  /**
+   * @name            getMockId
+   * @description     Add mock id.
+   */
   function getMockId() {
     return (Math.floor((Math.random() * 1000000000) + 1)).toString();
   }

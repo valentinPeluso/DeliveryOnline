@@ -14,6 +14,7 @@ angular.module('app.components.filters')
     }
   });
 
+/* @ngInject */
 filtersComponentCtrl.$inject = [
   '_'
 ];
@@ -42,10 +43,21 @@ function filtersComponentCtrl(
 
   vm.filter = filter;
 
+  /**
+   * @name              activate
+   * @description       Bootstraps the controller.
+   */
   function activate() {
     vm.filters = [];
   }
 
+  /**
+   * @name                        filter
+   * @description                 Filter vm.data and return data filtered.
+   * @param {String} property     Property to use as selector.
+   * @param {String} value        Value to filter.
+   * @returns {Object}
+   */
   function filter(property, value) {
     if (angular.isDefined(property) && angular.isDefined(value)) {
       var dataFiltered = _.filter(vm.data, function (data) {

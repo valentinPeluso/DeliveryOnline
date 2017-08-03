@@ -10,6 +10,7 @@ angular.module('app.delivery_page.create_delivery')
     bindings: {}
   });
 
+/* @ngInject */
 createDeliveryComponentCtrl.$inject = [
   'deliveriesService',
   '$state'
@@ -30,6 +31,10 @@ function createDeliveryComponentCtrl(
 
   activate();
 
+  /**
+   * @name         activate
+   * @description  Bootstraps the controller.
+   */
   function activate() {
     vm.administrativeData = {
       administrativeContact: {},
@@ -37,6 +42,10 @@ function createDeliveryComponentCtrl(
     };
   }
 
+  /**
+   * @name           updateGrillaConfig
+   * @description    Save new delivery.
+   */
   function saveDelivery() {
     deliveriesService.postDelivery(vm.administrativeData);
     $state.go('list');

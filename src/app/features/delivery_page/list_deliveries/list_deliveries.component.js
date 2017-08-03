@@ -10,6 +10,7 @@ angular.module('app.delivery_page.list_deliveries')
     bindings: {}
   });
 
+/* @ngInject */
 listDeliveriesComponentCtrl.$inject = [
   'deliveriesService'
 ];
@@ -25,7 +26,11 @@ function listDeliveriesComponentCtrl(
   var vm = this;
 
   activate();
-
+  
+  /**
+   * @name           activate
+   * @description    Bootstraps the controller.
+   */
   function activate() {
     vm.deliveries = deliveriesService.getDeliveries();
   }

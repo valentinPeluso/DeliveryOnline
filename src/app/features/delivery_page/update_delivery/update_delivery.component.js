@@ -1,7 +1,7 @@
 /**
  * @ngdoc directive
  * @description Create delivery component.
- * @example <create-delivery></create-delivery>
+ * @example <update-delivery></update-delivery>
  */
 angular.module('app.delivery_page.update_delivery')
   .component('updateDelivery', {
@@ -10,6 +10,7 @@ angular.module('app.delivery_page.update_delivery')
     bindings: {}
   });
 
+/* @ngInject */
 updateDeliveryComponentCtrl.$inject = [
   'deliveriesService',
   '$state',
@@ -19,7 +20,7 @@ updateDeliveryComponentCtrl.$inject = [
 /**
  * @ngdoc controller
  * @class app.delivery_page.updateDeliveryComponentCtrl
- * @description Create delivery component controller.
+ * @description Update delivery component controller.
  */
 function updateDeliveryComponentCtrl(
   deliveriesService,
@@ -32,6 +33,10 @@ function updateDeliveryComponentCtrl(
 
   activate();
 
+  /**
+   * @name          activate
+   * @description   Bootstraps the controller.
+   */
   function activate() {
     vm.administrativeData = deliveriesService.getDelivery($stateParams.id);
     if (angular.isUndefined(vm.administrativeData)) {
@@ -39,6 +44,10 @@ function updateDeliveryComponentCtrl(
     }
   }
 
+  /**
+   * @name           updateGrillaConfig
+   * @description    Save updated delivery.
+   */
   function saveDelivery() {
     deliveriesService.updateDelivery(vm.administrativeData);
     $state.go('list');
