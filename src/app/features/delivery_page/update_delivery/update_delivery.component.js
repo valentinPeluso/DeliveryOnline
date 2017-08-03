@@ -14,7 +14,8 @@ angular.module('app.delivery_page.update_delivery')
 updateDeliveryComponentCtrl.$inject = [
   'deliveriesService',
   '$state',
-  '$stateParams'
+  '$stateParams',
+  'confirmationService'
 ];
 
 /**
@@ -25,7 +26,8 @@ updateDeliveryComponentCtrl.$inject = [
 function updateDeliveryComponentCtrl(
   deliveriesService,
   $state,
-  $stateParams
+  $stateParams,
+  confirmationService
 ) {
   var vm = this;
 
@@ -49,7 +51,9 @@ function updateDeliveryComponentCtrl(
    * @description    Save updated delivery.
    */
   function saveDelivery() {
-    deliveriesService.updateDelivery(vm.administrativeData);
-    $state.go('list');
+    confirmationService.confirm('updateDelivery').then(function () {
+      deliveriesService.updateDelivery(vm.administrativeData);
+      $state.go('list');
+    });
   }
 }

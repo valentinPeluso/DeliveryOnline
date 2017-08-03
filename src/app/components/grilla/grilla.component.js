@@ -18,7 +18,8 @@ grillaComponentCtrl.$inject = [
   'deliveriesService',
   '$filter',
   '$state',
-  '$uibModal'
+  '$uibModal',
+  'confirmationService'
 ];
 
 /**
@@ -31,7 +32,8 @@ function grillaComponentCtrl(
   deliveriesService,
   $filter,
   $state,
-  $uibModal
+  $uibModal,
+  confirmationService
 ) {
   var vm = this;
 
@@ -155,14 +157,16 @@ function grillaComponentCtrl(
    * @param {String} id      Id of grid data element.
    */
   function removeItem(id) {
-    _.remove(vm.dataFiltered, function (data) {
-      return data.id === id;
+    confirmationService.confirm('removeDelivery').then(function () {
+      _.remove(vm.dataFiltered, function (data) {
+        return data.id === id;
+      });
+      _.remove(vm.originalData, function (data) {
+        return data.id === id;
+      });
+      vm.orderData = $filter('orderBy')(vm.dataFiltered, vm.order.property, vm.order.reverse);
+      setData(angular.copy(vm.orderData));
     });
-    _.remove(vm.originalData, function (data) {
-      return data.id === id;
-    });
-    vm.orderData = $filter('orderBy')(vm.dataFiltered, vm.order.property, vm.order.reverse);
-    setData(angular.copy(vm.orderData));
   }
 
   /**

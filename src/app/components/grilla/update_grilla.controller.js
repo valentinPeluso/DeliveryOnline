@@ -1,7 +1,6 @@
 /**
  * @ngdoc component
- * @description Grilla component.
- * @example <grilla></grilla>
+ * @description Update grilla controller.
  */
 angular.module('app.components.grilla')
   .controller('updateGrillaController', updateGrillaCtrl);
@@ -10,7 +9,8 @@ angular.module('app.components.grilla')
 updateGrillaCtrl.$inject = [
   'grillaConfig',
   'deliveriesService',
-  '$uibModalInstance'
+  '$uibModalInstance',
+  'confirmationService'
 ];
 
 /**
@@ -21,7 +21,8 @@ updateGrillaCtrl.$inject = [
 function updateGrillaCtrl(
   grillaConfig,
   deliveriesService,
-  $uibModalInstance
+  $uibModalInstance,
+  confirmationService
 ) {
   var vm = this;
 
@@ -43,7 +44,9 @@ function updateGrillaCtrl(
    * @description   Return the new grilla config.
    */
   function saveGrillaConfig() {
-    $uibModalInstance.close(vm.grillaConfig);
+    confirmationService.confirm('updateGrilla').then(function () {
+      $uibModalInstance.close(vm.grillaConfig);
+    });
   }
 
   /**

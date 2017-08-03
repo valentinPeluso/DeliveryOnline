@@ -3,5 +3,6 @@ angular
     'ui.router',
     'ui.bootstrap',
     'app.delivery_page',
-    'lodash'
+    'lodash',
+    'confirmation'
   ]);
