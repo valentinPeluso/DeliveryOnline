@@ -18,7 +18,8 @@ En conclusión quisiera aclarar, que aunque estos ultimos meses me aleje un poco
 2) NPM versión 3.10 o superiores
 3) Bower versión 1.8 o superiores
 4) Gulpjs version 3.9 o superiores
-5) Karma version  1.7 o superiores
+5) Karma version  1.7 o superiores (No es obligatorio)
+6) Jsdoc version 3.5 o superiores (No es obligatorio)
 
 ### Modo de uso
 1) Extraer el archivo comprimido.
