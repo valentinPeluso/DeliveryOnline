@@ -26,7 +26,7 @@ function listDeliveriesComponentCtrl(
   var vm = this;
 
   activate();
-  
+
   /**
    * @name           activate
    * @description    Bootstraps the controller.
