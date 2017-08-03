@@ -1,0 +1,60 @@
+<div class="container">
+  <div class="row form-group">
+      <filters columns="$ctrl.grillaConfig.columns" data="$ctrl.originalData" get-data-filtered="$ctrl.getDataFiltered(data)"></filters>     
+  </div>
+  <div class="row">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th ng-repeat="column in $ctrl.grillaConfig.columns | filter:{active: true} track by $index" ng-click="$ctrl.orderChanged(column.order, column.property)">
+              {{column.title}}
+              <i class="fa fa-info-circle"
+                ng-if="column.order"
+                aria-hidden="true"
+                tooltip-placement="right"
+                uib-tooltip="Ordenar"></i>
+              <span ng-if="column.order" class="pull-right">
+                <i class="fa fa-caret-up"
+                  aria-hidden="true"
+                  ng-show="column.property === $ctrl.order.property && !$ctrl.order.reverse"></i>
+                <i class="fa fa-caret-down"
+                  aria-hidden="true"
+                  ng-show="column.property === $ctrl.order.property && $ctrl.order.reverse"></i>
+              </span>
+          </th>
+          <th>
+            <a class="btn btn-sm btn-default" ng-click="$ctrl.updateGrid()">
+              <i class="fa fa-cog" aria-hidden="true"></i>
+            </a>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="data in $ctrl.data track by $index">
+          <td ng-repeat="column in $ctrl.grillaConfig.columns | filter:{active: true} track by $index">
+            {{data[column.property]}}
+          </td>
+          <td>
+            <a class="btn btn-sm btn-danger" ng-click="$ctrl.removeItem(data.id)">
+              <i class="fa fa-trash-o" aria-hidden="true"></i>
+            </a>
+            <a class="btn btn-sm btn-primary" ng-click="$ctrl.updateItem(data.id)">
+              <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <ul uib-pagination
+            total-items="$ctrl.dataFiltered.length"
+            items-per-page="$ctrl.grillaConfig.cantItemsPerPage"
+            previous-text="Anterior"
+            next-text="Siguiente"
+            ng-model="$ctrl.currentPage"
+            ng-change="$ctrl.pageChanged()"></ul>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>

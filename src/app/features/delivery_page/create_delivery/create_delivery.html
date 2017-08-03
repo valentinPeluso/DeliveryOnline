@@ -1,0 +1,237 @@
+<div class="container">
+  <div class="row form-group">
+    <div class="col-lg-12">
+      <form class="row" name="administrativeForm">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="page-header">
+              <h3>Datos administrativos</h3>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row" ng-class="{'has-error': administrativeForm.nombre.$touched && administrativeForm.nombre.$error.required}">
+          <label for="nombre" class="col-lg-2 control-label">Nombre</label>
+          <div class="col-lg-3">
+            <input type="text" class="form-control" id="nombre" name="nombre" ng-model="$ctrl.administrativeData.name" aria-describedby="nombreHelpBlock"
+              maxlength="50" required="true">
+          </div>
+          <div class="col-lg-offset-1 col-lg-6">
+            <div ng-show="administrativeForm.nombre.$touched">
+              <span id="nombreHelpBlock" class="help-block" ng-show="administrativeForm.nombre.$error.required">Este campo es obligatorio</span>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="telefono" class="col-lg-2 control-label">Telefono</label>
+          <div class="col-lg-3">
+            <input type="tel" class="form-control" id="telefono" ng-model="$ctrl.administrativeData.phone">
+          </div>
+          <div class="col-lg-offset-1 col-lg-6">
+          </div>
+        </div>
+        <div class="form-group" ng-class="{'has-error': administrativeForm.descripcion.$touched && administrativeForm.descripcion.$error.required}">
+          <div class="row">
+            <label for="descripcion" class="col-lg-2 control-label">Descripción</label>
+            <div class="col-lg-4">
+              <textarea rows="6" class="form-control" id="descripcion" name="descripcion" ng-model="$ctrl.administrativeData.description"
+                maxlength="1000" aria-describedby="descripcionHelpBlock" required="true">
+        </textarea>
+            </div>
+            <div class="col-lg-6">
+              <div ng-show="administrativeForm.descripcion.$touched">
+                <span id="descripcionHelpBlock" class="help-block" ng-show="administrativeForm.descripcion.$error.required">Este campo es obligatorio</span>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-offset-2 col-lg-4">
+              Restan {{1000 - $ctrl.administrativeData.description.length }} caracteres
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <label for="especialidades" class="col-lg-2 control-label">Especialidades</label>
+            <div class="col-lg-4">
+              <textarea rows="4" class="form-control" id="especialidades" ng-model="$ctrl.administrativeData.specialities" maxlength="500">
+        </textarea>
+            </div>
+            <div class="col-lg-6">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-offset-2 col-lg-4">
+              Restan {{500 - $ctrl.administrativeData.specialities.length }} caracteres
+            </div>
+          </div>
+        </div>
+        <div class="form-group row" ng-class="{'has-error': administrativeForm.direccion.$touched && administrativeForm.direccion.$error.required}">
+          <label for="direccion" class="col-lg-2 control-label">Direccion</label>
+          <div class="col-lg-3">
+            <input type="text" class="form-control" id="direccion" name="direccion" ng-model="$ctrl.administrativeData.address" aria-describedby="direccionHelpBlock"
+              maxlength="200" required="true">
+          </div>
+          <div class="col-lg-offset-1 col-lg-6">
+            <div ng-show="administrativeForm.direccion.$touched">
+              <span id="direccionHelpBlock" class="help-block" ng-show="administrativeForm.direccion.$error.required">Este campo es obligatorio</span>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row" ng-class="{'has-error': (administrativeForm.horaDesde.$touched && administrativeForm.horaDesde.$error.required) || administrativeForm.horaHasta.$modelValue <= administrativeForm.horaDesde.$modelValue || administrativeForm.horaDesde.$error.max || administrativeForm.horaDesde.$error.min || administrativeForm.horaHasta.$error.max || administrativeForm.horaHasta.$error.min}">
+          <label for="horaDesde" class="col-lg-2 control-label">Horario de atención</label>
+          <div class="col-lg-4">
+            <div class="row">
+              <div class="col-xs-5">
+                <div class="input-group">
+                  <input type="number" class="form-control" id="horaDesde" name="horaDesde" min="1" max="24" ng-model="$ctrl.administrativeData.time.from"
+                    aria-describedby="horaDesdeHelpBlock" required="true">
+                  <span class="input-group-addon">
+              <i class="fa fa-clock-o" aria-hidden="true"></i>
+            </span>
+                </div>
+              </div>
+              <div class="col-xs-2 text-center">a</div>
+              <div class="col-xs-5">
+                <div class="input-group">
+                  <input type="number" class="form-control" id="horaHasta" name="horaHasta" min="1" max="24" ng-model="$ctrl.administrativeData.time.to"
+                    aria-describedby="horaHastaHelpBlock" required="true">
+                  <span class="input-group-addon">
+              <i class="fa fa-clock-o" aria-hidden="true"></i>
+            </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div ng-show="administrativeForm.horaDesde.$touched">
+              <span id="horaDesdeHelpBlock" class="help-block" ng-show="administrativeForm.horaDesde.$error.required">Este campo es obligatorio</span>
+              <span id="horaDesdeHelpBlock" class="help-block" ng-show="administrativeForm.horaDesde.$error.max">El horario de inicio de atención no puede ser mayor a 24</span>
+              <span id="horaDesdeHelpBlock" class="help-block" ng-show="administrativeForm.horaDesde.$error.min">El horario de inicio de atención no puede ser menor a 1</span>
+              <span id="horaHastaHelpBlock" class="help-block" ng-show="administrativeForm.horaHasta.$error.max">El horario de cierre de atención no puede ser mayor a 24</span>
+              <span id="horaHastaHelpBlock" class="help-block" ng-show="administrativeForm.horaHasta.$error.min">El horario de cierre de atención no puede ser menor a 1</span>
+              <span id="horaDesdeHelpBlock" class="help-block" ng-show="administrativeForm.horaHasta.$modelValue <= administrativeForm.horaDesde.$modelValue">El horario de inicio de atención no puede ser mayor a la hora de cierre</span>
+            </div>
+          </div>
+      </form>
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="col-lg-6">
+        <div class="page-header">
+          <h3>Contacto Administrativo</h3>
+        </div>
+        <div class="checkbox">
+          <label></label>
+        </div>
+        <form class="row" name="contactAdministrativeForm">
+          <div class="col-md-12">
+            <div class="form-group row" ng-class="{'has-error': contactAdministrativeForm.nombre.$touched && contactAdministrativeForm.nombre.$error.required}">
+              <label for="nombre" class="col-md-4 control-label">Nombre</label>
+              <div class="col-md-6">
+                <input type="text" class="form-control" id="nombre" name="nombre" ng-model="$ctrl.administrativeData.administrativeContact.name" aria-describedby="nombreHelpBlock"
+                  maxlength="50" required="true">
+              </div>
+              <div class="col-md-offset-4 col-md-6" ng-show="contactAdministrativeForm.nombre.$touched">
+                <span id="nombreHelpBlock" class="help-block" ng-show="contactAdministrativeForm.nombre.$error.required">Este campo es obligatorio</span>
+              </div>
+            </div>
+            <div class="form-group row" ng-class="{'has-error': contactAdministrativeForm.apellido.$touched && contactAdministrativeForm.apellido.$error.required}">
+              <label for="apellido" class="col-md-4 control-label">Apellido</label>
+              <div class="col-md-6">
+                <input type="text" class="form-control" id="apellido" name="apellido" ng-model="$ctrl.administrativeData.administrativeContact.lastName" aria-describedby="apellidoHelpBlock"
+                  maxlength="50" required="true">
+              </div>
+              <div class="col-md-offset-4 col-md-6" ng-show="contactAdministrativeForm.apellido.$touched">
+                <span id="apellidoHelpBlock" class="help-block" ng-show="contactAdministrativeForm.apellido.$error.required">Este campo es obligatorio</span>
+              </div>
+            </div>
+            <div class="form-group row" ng-class="{'has-error': contactAdministrativeForm.telefono.$touched && contactAdministrativeForm.telefono.$error.required}">
+              <label for="telefono" class="col-md-4 control-label">Telefono</label>
+              <div class="col-md-6">
+                <input type="tel" class="form-control" id="telefono" name="telefono" ng-model="$ctrl.administrativeData.administrativeContact.phone" aria-describedby="telefonoHelpBlock"
+                  maxlength="50" required="true">
+              </div>
+              <div class="col-md-offset-4 col-md-6" ng-show="contactAdministrativeForm.telefono.$touched">
+                <span id="telefonoHelpBlock" class="help-block" ng-show="contactAdministrativeForm.telefono.$error.required">Este campo es obligatorio</span>
+              </div>
+            </div>
+            <div class="form-group row" ng-class="{'has-error': contactAdministrativeForm.email.$touched && (contactAdministrativeForm.email.$error.required || contactAdministrativeForm.email.$error.email) }">
+              <label for="email" class="col-md-4 control-label">Email</label>
+              <div class="col-md-6">
+                <input type="email" class="form-control" id="email" name="email" ng-model="$ctrl.administrativeData.administrativeContact.email" aria-describedby="emailHelpBlock"
+                  maxlength="50" required="true">
+              </div>
+              <div class="col-md-offset-4 col-md-6" ng-show="contactAdministrativeForm.email.$touched">
+                <span id="emailHelpBlock" class="help-block" ng-show="contactAdministrativeForm.email.$error.required">Este campo es obligatorio</span>
+                <span id="emailHelpBlock" class="help-block" ng-show="contactAdministrativeForm.email.$error.email">El email ingresado es incorrecto</span>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="col-lg-6">
+        <div class="page-header">
+          <h3>Contacto Comercial</h3>
+        </div>
+        <div class="checkbox">
+          <label>
+          <input type="checkbox"> Idem contacto administrativo
+        </label>
+        </div>
+        <form class="row" name="contactComercialForm">
+          <div class="col-md-12">
+            <div class="form-group row" ng-class="{'has-error': contactComercialForm.nombre.$touched && contactComercialForm.nombre.$error.required}">
+              <label for="nombre" class="col-md-4 control-label">Nombre</label>
+              <div class="col-md-6">
+                <input type="text" class="form-control" id="nombre" name="nombre" ng-model="$ctrl.administrativeData.comercialContact.name" aria-describedby="nombreHelpBlock"
+                  maxlength="50" required="true">
+              </div>
+              <div class="col-md-offset-4 col-md-6" ng-show="contactComercialForm.nombre.$touched">
+                <span id="nombreHelpBlock" class="help-block" ng-show="contactComercialForm.nombre.$error.required">Este campo es obligatorio</span>
+              </div>
+            </div>
+            <div class="form-group row" ng-class="{'has-error': contactComercialForm.apellido.$touched && contactComercialForm.apellido.$error.required}">
+              <label for="apellido" class="col-md-4 control-label">Apellido</label>
+              <div class="col-md-6">
+                <input type="text" class="form-control" id="apellido" name="apellido" ng-model="$ctrl.administrativeData.comercialContact.lastName" aria-describedby="apellidoHelpBlock"
+                  maxlength="50" required="true">
+              </div>
+              <div class="col-md-offset-4 col-md-6" ng-show="contactComercialForm.apellido.$touched">
+                <span id="apellidoHelpBlock" class="help-block" ng-show="contactComercialForm.apellido.$error.required">Este campo es obligatorio</span>
+              </div>
+            </div>
+            <div class="form-group row" ng-class="{'has-error': contactComercialForm.telefono.$touched && contactComercialForm.telefono.$error.required}">
+              <label for="telefono" class="col-md-4 control-label">Telefono</label>
+              <div class="col-md-6">
+                <input type="tel" class="form-control" id="telefono" name="telefono" ng-model="$ctrl.administrativeData.comercialContact.phone" aria-describedby="telefonoHelpBlock"
+                  maxlength="50" required="true">
+              </div>
+              <div class="col-md-offset-4 col-md-6" ng-show="contactComercialForm.telefono.$touched">
+                <span id="telefonoHelpBlock" class="help-block" ng-show="contactComercialForm.telefono.$error.required">Este campo es obligatorio</span>
+              </div>
+            </div>
+            <div class="form-group row" ng-class="{'has-error': contactComercialForm.email.$touched && (contactComercialForm.email.$error.required || contactComercialForm.email.$error.email) }">
+              <label for="email" class="col-md-4 control-label">Email</label>
+              <div class="col-md-6">
+                <input type="email" class="form-control" id="email" name="email" ng-model="$ctrl.administrativeData.comercialContact.email" aria-describedby="emailHelpBlock"
+                  maxlength="50" required="true">
+              </div>
+              <div class="col-md-offset-4 col-md-6" ng-show="contactComercialForm.email.$touched">
+                <span id="emailHelpBlock" class="help-block" ng-show="contactComercialForm.email.$error.required">Este campo es obligatorio</span>
+                <span id="emailHelpBlock" class="help-block" ng-show="contactComercialForm.email.$error.email">El email ingresado es incorrecto</span>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="col-lg-offset-8 col-lg-2">
+        <a class="btn btn-primary" ui-sref="list">Cancelar</a>
+      </div>
+      <div class="col-lg-2">
+        <button type="button" class="btn btn-primary" ng-click="$ctrl.saveDelivery()" ng-disabled="contactComercialForm.$invalid && contactAdministrativeForm.$invalid && administrativeForm.$invalid">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>

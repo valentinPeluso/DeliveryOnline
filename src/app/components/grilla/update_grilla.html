@@ -1,0 +1,49 @@
+<div class="modal-header">
+  <h3 class="modal-title" id="modal-title">Modificar Grilla</h3>
+</div>
+<div class="modal-body" id="modal-body">
+  <div class="form-group row">
+    <label for="cantidadItems" class="col-sm-4 control-label">Cantidad de items por página</label>
+    <div class="col-sm-8">
+      <input type="number" class="form-control" id="cantidadItems" ng-model="$ctrl.grillaConfig.cantItemsPerPage">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Columna</th>
+            <th>Activa</th>
+            <th>Ordenable</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="column in $ctrl.grillaConfig.columns track by $index">
+            <td>
+              {{column.title}}
+            </td>
+            <td>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="column.active">
+                </label>
+              </div>
+            </td>
+            <td>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="column.order">
+                </label>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-success" type="button" ng-click="$ctrl.saveGrillaConfig()">Guardar</button>
+  <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancelar</button>
+</div>
