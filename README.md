@@ -32,5 +32,5 @@ En conclusión quisiera aclarar, que aunque estos ultimos meses me aleje un poco
 ### Aclaraciones
 1) La informacion mockeada esta en el archivo `src/app/features/delivery_page/delivery_page.service.js`. Este archivo es un servicio de angular y dado que los mismos funcionan como un singleton, si refresca el navegador toda la informacion no mockeada guardada en el mismo se perderá.
 2) Una vez inciada la aplicación puede navegar por la misma agregando o guardando deliveries. Recuerde la aclaración anterior en cuanto a refrescar la aplicación.
-3) Utilice la herramienta `Yeoman` como generador del scaffolding y archivos de la aplicación.
+3) Utilice la herramienta `Yeoman` como generador del scaffolding y archivos de la aplicación. Esta herramienta autogeneró archivos que no se utilizan actualmente en la aplicación. 
 
